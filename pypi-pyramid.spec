@@ -7,7 +7,7 @@
 #
 Name     : pypi-pyramid
 Version  : 2.0.1
-Release  : 2
+Release  : 3
 URL      : https://files.pythonhosted.org/packages/05/c5/65f290930d67fafd38383571cffe69c38f42edc3026dcbfed60c527221e5/pyramid-2.0.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/05/c5/65f290930d67fafd38383571cffe69c38f42edc3026dcbfed60c527221e5/pyramid-2.0.1.tar.gz
 Source1  : https://files.pythonhosted.org/packages/05/c5/65f290930d67fafd38383571cffe69c38f42edc3026dcbfed60c527221e5/pyramid-2.0.1.tar.gz.asc
