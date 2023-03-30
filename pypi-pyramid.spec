@@ -7,14 +7,15 @@
 #
 Name     : pypi-pyramid
 Version  : 2.0.1
-Release  : 1
+Release  : 2
 URL      : https://files.pythonhosted.org/packages/05/c5/65f290930d67fafd38383571cffe69c38f42edc3026dcbfed60c527221e5/pyramid-2.0.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/05/c5/65f290930d67fafd38383571cffe69c38f42edc3026dcbfed60c527221e5/pyramid-2.0.1.tar.gz
 Source1  : https://files.pythonhosted.org/packages/05/c5/65f290930d67fafd38383571cffe69c38f42edc3026dcbfed60c527221e5/pyramid-2.0.1.tar.gz.asc
 Summary  : The Pyramid Web Framework, a Pylons project
 Group    : Development/Tools
-License  : BSD-derived(Repoze)
+License  : MIT ZPL-2.1
 Requires: pypi-pyramid-bin = %{version}-%{release}
+Requires: pypi-pyramid-license = %{version}-%{release}
 Requires: pypi-pyramid-python = %{version}-%{release}
 Requires: pypi-pyramid-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
@@ -37,9 +38,18 @@ Pyramid
 %package bin
 Summary: bin components for the pypi-pyramid package.
 Group: Binaries
+Requires: pypi-pyramid-license = %{version}-%{release}
 
 %description bin
 bin components for the pypi-pyramid package.
+
+
+%package license
+Summary: license components for the pypi-pyramid package.
+Group: Default
+
+%description license
+license components for the pypi-pyramid package.
 
 
 %package python
@@ -82,7 +92,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680185990
+export SOURCE_DATE_EPOCH=1680186261
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -106,6 +116,8 @@ popd
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/pypi-pyramid
+cp %{_builddir}/pyramid-%{version}/LICENSE.txt %{buildroot}/usr/share/package-licenses/pypi-pyramid/d73217e5856de88d31964bfd23238502f72f85c9 || :
 pip install --root=%{buildroot} --no-deps --ignore-installed dist/*.whl
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -132,6 +144,10 @@ popd
 /usr/bin/pshell
 /usr/bin/ptweens
 /usr/bin/pviews
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/pypi-pyramid/d73217e5856de88d31964bfd23238502f72f85c9
 
 %files python
 %defattr(-,root,root,-)
